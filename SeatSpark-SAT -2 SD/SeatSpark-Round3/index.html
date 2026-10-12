@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111827" />
+  <title>SeatSpark | Ticket Booking</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">✦</span> SeatSpark</a>
+    <nav><a href="#events">Explore</a><a href="#my-bookings">My bookings</a><a href="#architecture">Round 3 HLD</a></nav>
+    <span class="demo-pill"><span></span> Interactive demo</span>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">YOUR NEXT GREAT EXPERIENCE</p>
+        <h1>Make plans.<br><span>Make memories.</span></h1>
+        <p class="hero-sub">Discover live music, comedy and experiences near you. Pick your seats and reserve tickets in a few clicks.</p>
+        <a class="primary-btn" href="#events">Explore events <span>↘</span></a>
+        <div class="hero-stats"><div><strong>12k+</strong><small>happy attendees</small></div><div><strong>50+</strong><small>events listed</small></div><div><strong>4.9/5</strong><small>guest rating</small></div></div>
+      </div>
+      <div class="hero-art" aria-label="Decorative event poster">
+        <div class="poster poster-back"><span>LIVE</span><b>AFTER<br>DARK</b></div>
+        <div class="poster poster-front"><div class="poster-top">SEATSPARK PRESENTS</div><div class="poster-orb"></div><b>FEEL<br>THE<br>MUSIC</b><div class="poster-bottom">ONE NIGHT. ALL THE FEELS.</div></div>
+        <div class="floating-ticket">🎟️ <span><b>Your night out</b><small>starts here</small></span></div>
+      </div>
+    </section>
+    <section id="events" class="section">
+      <div class="section-heading"><div><p class="eyebrow">FIND YOUR VIBE</p><h2>Upcoming events</h2></div><div class="filters"><input id="search" type="search" placeholder="Search events..." aria-label="Search events"><select id="category" aria-label="Filter category"><option value="All">All categories</option><option>Music</option><option>Comedy</option><option>Arts</option><option>Technology</option></select></div></div>
+      <div id="event-grid" class="event-grid"></div>
+    </section>
+    <section id="my-bookings" class="section bookings-section">
+      <div class="section-heading"><div><p class="eyebrow">YOUR PLANS</p><h2>My bookings</h2></div><button class="text-btn" id="clear-bookings">Clear demo bookings</button></div>
+      <div id="booking-list" class="booking-list"></div>
+    </section>
+    <section id="architecture" class="section architecture-section">
+      <p class="eyebrow">ROUND 3 · HIGH-LEVEL DESIGN</p><h2>Built around a reliable booking flow.</h2>
+      <p class="architecture-intro">This runnable front-end demo illustrates the user journey and the main HLD components. It stores demo bookings in this browser only.</p>
+      <div class="architecture-grid">
+        <article><span class="arch-icon">🧑‍💻</span><h3>1. Client UI</h3><p>Browse events, select seats, view reservations and cancel a demo booking.</p></article>
+        <article><span class="arch-icon">🔌</span><h3>2. REST API layer</h3><p>In a full system: event search, seat availability, reservation, payment and cancellation endpoints.</p></article>
+        <article><span class="arch-icon">🗄️</span><h3>3. Database</h3><p>PostgreSQL stores users, events, seats, reservations and payment status with unique seat constraints.</p></article>
+        <article><span class="arch-icon">⚡</span><h3>4. Cache</h3><p>Redis can cache popular event listings and short-lived seat availability to reduce read load.</p></article>
+        <article><span class="arch-icon">🔒</span><h3>5. Booking safety</h3><p>Use transactions, seat locks or expiring holds to prevent two customers booking the same seat.</p></article>
+        <article><span class="arch-icon">📨</span><h3>6. Notifications</h3><p>A queue sends booking confirmation email/SMS after a successful reservation.</p></article>
+      </div>
+      <div class="flow"><span>Browser</span><i>→</i><span>REST API</span><i>→</i><span>Booking service</span><i>→</i><span>PostgreSQL</span><em>↔ Redis cache</em><em>Booking event → Queue → Email/SMS</em></div>
+      <p class="note"><b>Scope note:</b> This is a front-end demonstration, not a production ticketing backend. Real multi-user booking, authentication and payments require server-side implementation and configured services.</p>
+    </section>
+  </main>
+  <footer><a class="brand" href="#"><span class="brand-mark">✦</span> SeatSpark</a><span>Designed for the Round 3 HLD assignment · Demo mode</span></footer>
+  <dialog id="booking-dialog">
+    <form method="dialog" class="dialog-close"><button aria-label="Close">✕</button></form>
+    <div id="dialog-content"></div>
+  </dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
